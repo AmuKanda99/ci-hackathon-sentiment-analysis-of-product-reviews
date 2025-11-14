@@ -3,29 +3,32 @@
 This repository contains all of the files and documentation for the Sentiment Analyses of Amazon Fine Food Products, as part of the Code Institute Data Analytics with AI Bootcamp Hackathon project 2.
 
 ## Dataset Content
-This data is freely available on [Kaggle](https://www.kaggle.com/datasets/snap/amazon-fine-food-reviews/data). The dataset contains ~500,000 reviews of fine food product on Amazon over a 10 year period. The data includes product and user ID's, timestamps, ratings (1-5) and a plain text review.
+This data is freely available on [Kaggle](https://www.kaggle.com/datasets/snap/amazon-fine-food-reviews/data). The dataset contains ~500,000 reviews of fine food products on Amazon over a 10 year period. The data includes product and user ID's, timestamps, ratings (1-5) and a plain text review. This raw dataset can be found [here](https://github.com/AmuKanda99/ci-hackathon-sentiment-analysis-of-product-reviews/blob/main/data/Reviews.csv).
 
 ## Business Requirements
-The e-commerce platform Amazon wants to improve customer experience and product recommendations based on review sentiment. The focus is to identify factors driving positive and negative reviews.
+The E-commerce platform Amazon wants to improve customer experience and product recommendations based on review sentiment. They need to identify common themes across products that drive positive or negative sentiments, as well as track product performance. In addition, they want to better understand the users leaving the reviews, and whether frequent reviewers are more or less 'picky'. Finally, they need a tool to predict sentiments based on review text in real-time, to help improve product recommendations.
 
-## Hypothesis and validation
+## Hypotheses and validation
 
 **H1: Sentiment Analysis.** Sentiments vary by product and over time, and are associated with common words/phrases. To understand these patterns, we will track sentiment changes by product/time and identify key themes/attributes correlated with ratings.
 
-**H2: Predictive Modelling.** Ratings and sentiments (positive/negative) can be accurately predicted from the review text. We will build a sentiment prediction model to deploy a tool for real-time prediction of product ratings based on reviews.
+**H2: User Analysis.** Users that leave reviews more often tend to leave better reviews, on average i.e. there is a positive relationship between number of reviews and average rating per user. 
+
+**H3: Predictive Modelling.** Ratings and sentiments (positive/negative) can be accurately predicted from the review text. We will build a sentiment prediction model to deploy a tool for real-time prediction of product ratings based on reviews.
 
 ## Project Plan
-* Outline the high-level steps taken for the analysis.
-* How was the data managed throughout the collection, processing, analysis and interpretation steps?
-* Why did you choose the research methodologies you used?
 
-1. Data cleaning
-2. Exploratory data analysis
-3. Predictive model
-4. Dashboard
+1. **ETL:** The dataset will be extracted from Kaggle and uploaded to the github repository using [git-lfs](https://git-lfs.com/) due to the size of the dataset. The data will then be transformed in the followings ways; reduction of the size of the dataset for easier handling using stratification on the ratings variable, removal of duplicate reviews, cleaning and formatting of variables (timestamps), addition of new variables (sentiment). This cleaned dataset will then be saved as a .csv file and shared on the repository [here](https://github.com/AmuKanda99/ci-hackathon-sentiment-analysis-of-product-reviews/blob/main/data/Reviews_Sample_Cleaned.csv). The notebook containing the code for this step can be found [here](https://github.com/AmuKanda99/ci-hackathon-sentiment-analysis-of-product-reviews/blob/main/jupyter_notebooks/01_ETL.ipynb).
+2. **EDA:** The cleaned data will then be used to perform exploratory data analysis, in order to understand the distributions of key variables as well as broad patterns and correlations between variables. This will be used to inform downstream analyses. The notebook for this step can be found [here](https://github.com/AmuKanda99/ci-hackathon-sentiment-analysis-of-product-reviews/blob/main/jupyter_notebooks/2_amazon_product_review_EDA.ipynb).
+4. **Predictive model:** Machine learning methods will be used to build a model predicting review sentiment based on the review text. This model will then be tested with novel reviews to show its utility as a tool for real-time predictions of review ratings (H3). The notebook containing the code for this step can be found [here](https://github.com/AmuKanda99/ci-hackathon-sentiment-analysis-of-product-reviews/blob/main/jupyter_notebooks/Notebook_Template%20copy.ipynb).
+5. **Dashboard:** Advanced, interactive visualisations will be created using a dashboard to aid data storytelling and meet business requirements (H1 and H2). The dashboard file can be found [here](https://github.com/AmuKanda99/ci-hackathon-sentiment-analysis-of-product-reviews/blob/main/dashboard/amazon_product_review_sentiment_analysis_dashboard.pbix), and is published on the PowerBI platform [here](https://app.powerbi.com/groups/me/reports/b54498ef-9596-486d-9bb4-5dd0fd185e55/4514eb57e092d691e490?experience=power-bi).
 
 ## The rationale to map the business requirements to the Data Visualisations
-* List your business requirements and a rationale to map them to the Data Visualisations
+
+  1. Identifying common themes driving postiive and negative reviews: Wordclouds produced in the Dashboard and EDA notebook show common words associated with postive and negative reviews.
+  3. Track product performance: Tables showing best and worst performing products (based on number of reviews and average rating). Line graph tracking average ratings over time.
+  4. Understand users leaving reviews: Scatterplot of number of reviews left and average ratings given per user.
+  5. Real-time sentiment prediction: Confusion matrix shows performance of the prediction model.
 
 ## Analysis techniques used
 * List the data analysis methods used and explain limitations or alternative approaches.
@@ -35,25 +38,34 @@ The e-commerce platform Amazon wants to improve customer experience and product 
 
 ## Conclusions
 
+**H1:** Review sentiments are associated with common words. For instance, the words 'delicious', 'great' and 'love' were used frequently in positive reviews (ratings 3 or more). In contrast, the words 'disappointed' and 'waste' were used frequently in negative reviews (ratings of 2 or less). Some words were common to both positive and negative reviews, such as 'taste', 'flavour' and 'price', highlighting these factors as key indicators of product performance. 
+
+**H2:** Most users leave reviews infrequently (5 reviews or less per user), and for these infrequent reviews there is a large range of average ratings. Users that leave reviews more often (more than 5 reviews) are less common, but those that do leave reviews regularly tend to leave higher ratings (averages between 3-5). This suggests that frequent reviewers are less 'picky' on average than those who rarely leave reviews.
+
+**H3:** Review sentiments can be accurately predicted from review text using machine learning methods. The model performed with an accuracy of 84.3% and could correctly predict the sentiment of novel reviews. Neutral reviews were harder for the model to predict, with lower precision, recall and f1-score compared to positive and negative review categories. This highlights the use of stronger language in positive and negative vs. neutral reviews.
 
 ## Ethical considerations
-* Were there any data privacy, bias or fairness issues with the data?
-* How did you overcome any legal or societal issues?
+User's profile names (the ProfileName column) were removed during the ETL process to comply with GDPR, as this contained personally identifiable information.
 
 ## Dashboard Design
-* List all dashboard pages and their content, either blocks of information or widgets, like buttons, checkboxes, images, or any other item that your dashboard library supports.
-* Later, during the project development, you may revisit your dashboard plan to update a given feature (for example, at the beginning of the project you were confident you would use a given plot to display an insight but subsequently you used another plot type).
-* How were data insights communicated to technical and non-technical audiences?
-* Explain how the dashboard was designed to communicate complex data insights to different audiences. 
+
+**Main Dashboard:**
+- Wordclouds for positive and negative review sentiment categories highlight common words used in the review text.
+- Tables list the best and worst performing products, along with the number of reviews and and average rating. These are pre-filtered to give a quick and easy view of the best and worst products.
+- Line graph shows temporal reviews trends, with average ratings over time. In addition, a forecast is given, projecting future ratings.
+- A scatterplot provides a user analysis of average ratings per user based on the number of reviews left.
+- A slider for date and a search bar for product ID allows drill-down into patterns for specific product and/or time periods.
+
+**Product performance:**
+ - This page drill-downs further into the best and worst performing products, showing a less strigent filtering than that shown on the main page. 
+
 
 ## Unfixed Bugs
-* Please mention unfixed bugs and why they were not fixed. This section should include shortcomings of the frameworks or technologies used. Although time can be a significant variable to consider, paucity of time and difficulty understanding implementation are not valid reasons to leave bugs unfixed.
-* Did you recognise gaps in your knowledge, and how did you address them?
-* If applicable, include evidence of feedback received (from peers or instructors) and how it improved your approach or understanding.
+The product ID column contains uninformative alpha-numeric codes. In order to gain further insight into this dataset, we should look to decipher these codes in order to group products by type (e.g. food, drink).
 
 ## Development Roadmap
-* What challenges did you face, and what strategies were used to overcome these challenges?
-* What new skills or tools do you plan to learn next based on your project experience? 
+
+The size of the dataset proved challenging to handle. We overcame this by using git-lfs to upload the raw dataset into the repository, and subsequently subsetting the data a fraction of the size in order to complete downstream analyses.
 
 
 ## Main Data Analysis Libraries
@@ -62,21 +74,15 @@ The e-commerce platform Amazon wants to improve customer experience and product 
 
 ## Credits 
 
-* In this section, you need to reference where you got your content, media and extra help from. It is common practice to use code from other repositories and tutorials, however, it is important to be very specific about these sources to avoid plagiarism. 
-* You can break the credits section up into Content and Media, depending on what you have included in your project. 
+Amu: Project Manager and Data Analyst. Set up project repo and kanban. Performed ETL and built predictive model.
 
-### Content 
+Kirsty: Data Analyst. Created dashboard report and wrote documentation (with input from others).
 
-- The text for the Home page was taken from Wikipedia Article A
-- Instructions on how to implement form validation on the Sign-Up page was taken from [Specific YouTube Tutorial](https://www.youtube.com/)
-- The icons in the footer were taken from [Font Awesome](https://fontawesome.com/)
+Diana: Data Analyst. Performed EDA and provided feedback on other elements.
 
-### Media
-
-- The photos used on the home and sign-up page are from This Open-Source site
-- The images used for the gallery page were taken from this other open-source site
-
+### Resources
+Using git-lfs: https://github.com/git-lfs/git-lfs/wiki/Tutorial#git-lfs-tutorial
 
 
 ## Acknowledgements (optional)
-* Thank the people who provided support through this project.
+Thank you to the instructors and fellow coursemates at Code Institute for their support during this process.
