@@ -128,7 +128,7 @@ The size of the dataset proved challenging to handle. We overcame this by using 
 - **Pandas** - Data loading and manipulation
 - **NumPy** - Numerical calculations
 - **Scikit-learn** - Machine learning models and text vectorization
-- **Matplotlib, Seaborn and Plotly** - Data visualization and charts
+- **Matplotlib, Seaborn and Plotly** - Data visualisation and charts
 - **re** - Text preprocessing with regular expressions
 
 ## Credits
