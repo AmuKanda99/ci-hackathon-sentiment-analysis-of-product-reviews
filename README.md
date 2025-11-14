@@ -85,7 +85,7 @@ Used sequential pipeline: **ETL → EDA → ML → Evaluation**
 
 - **Ideation**
 - **Design**
-- **Code Optimization**
+- **Code Optimisation**
 - **Documentation**
 - **Problem Solving**:
 
