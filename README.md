@@ -36,7 +36,7 @@ The E-commerce platform Amazon wants to improve customer experience and product 
 
 #### **Exploratory Data Analysis (EDA)**
 
-- **Method**: Analysed data patterns using statistical summaries and visualizations
+- **Method**: Analysed data patterns using statistical summaries and visualisations
 - **Impelementation**:
   - Examined score and sentiment distributions
   - Identified class imbalance
@@ -69,8 +69,8 @@ The E-commerce platform Amazon wants to improve customer experience and product 
   - Removed ProfileName column
   - Deleted duplicate reviews
   - Cleaned HTML from review text
-- **Limitations**: May have removed some legitimate similar reviews; cannot verify complete anonymization
-- **Alternatives**: Could use less aggressive duplicate threshold or add additional anonymization layers
+- **Limitations**: May have removed some legitimate similar reviews; cannot verify complete anonymisation
+- **Alternatives**: Could use less aggressive duplicate threshold or add additional anonymisation layers
 
 ### Structure Justification
 
@@ -127,8 +127,8 @@ The size of the dataset proved challenging to handle. We overcame this by using 
 
 - **Pandas** - Data loading and manipulation
 - **NumPy** - Numerical calculations
-- **Scikit-learn** - Machine learning models and text vectorization
-- **Matplotlib, Seaborn and Plotly** - Data visualization and charts
+- **Scikit-learn** - Machine learning models and text vectorisation
+- **Matplotlib, Seaborn and Plotly** - Data visualisation and charts
 - **re** - Text preprocessing with regular expressions
 
 ## Credits
